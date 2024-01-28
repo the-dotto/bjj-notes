@@ -1,16 +1,14 @@
-import { createClient } from '@supabase/supabase-js'
-import { Database } from './interfaces/database';
-import { ENV } from '~/constants/environment';
-import { ModuleAuth } from './modules/auth'
-import { ModuleUsers } from './modules/user';
+import { ModuleUserProfiles } from './modules/user-profiles';
 import { ModuleEntries } from './modules/entries';
+import { Clients } from './clients';
 
 class SupabaseService {
-	private readonly client = createClient<Database>(ENV.supabase.url, ENV.supabase.key);
+	public readonly clients = new Clients();
 
-	public readonly auth = new ModuleAuth(this.client);
-	public readonly users = new ModuleUsers(this.client);
-	public readonly entries = new ModuleEntries(this.client);
+	public readonly modules = {
+		userProfiles: new ModuleUserProfiles(),
+		entries: new ModuleEntries()
+	};
 };
 
 export const SUPABASE_SERVICE = new SupabaseService();
