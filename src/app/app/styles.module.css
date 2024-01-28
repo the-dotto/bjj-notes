@@ -1,0 +1,6 @@
+.content {
+	@apply container mx-auto border-2 border-gray-900 h-full rounded-md;
+
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
