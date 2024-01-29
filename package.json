@@ -10,7 +10,6 @@
     "generate-types": "supabase gen types typescript --project-id rlxxdligmaoaqzhuhebi > src/services/supabase/interfaces/database.ts "
   },
   "dependencies": {
-    "@emotion/css": "^11.11.2",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-label": "^2.0.2",
     "@supabase/ssr": "^0.0.10",
