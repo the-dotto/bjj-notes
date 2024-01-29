@@ -13,6 +13,7 @@ export function FieldInput<Fields extends FieldValues>({
   placeholder,
   isRequired = false,
   autoComplete = false,
+  alwaysFullWidth,
   ...props
 }: Props<Fields>) {
   const { field, fieldState } = useController(props);
@@ -22,6 +23,7 @@ export function FieldInput<Fields extends FieldValues>({
       label={label}
       name={field.name}
       errorMessage={fieldState?.error?.message}
+      alwaysFullWidth={alwaysFullWidth}
     >
       <input
         id={field.name}

@@ -4,4 +4,5 @@ export interface PropsForFormFields<Fields extends FieldValues> extends UseContr
 	label: string;
 	isRequired?: boolean;
 	placeholder?: string;
+	alwaysFullWidth?: boolean;
 }

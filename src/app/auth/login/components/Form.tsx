@@ -32,6 +32,7 @@ export function Form() {
           name="email"
           control={form.control}
           isRequired
+          alwaysFullWidth
         />
 
         <FieldInput
@@ -40,6 +41,7 @@ export function Form() {
           name="password"
           control={form.control}
           isRequired
+          alwaysFullWidth
         />
       </div>
 

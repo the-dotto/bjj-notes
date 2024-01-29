@@ -7,6 +7,7 @@ interface Props extends PropsWithChildren, PropsWithClassName {
   name: string;
   label: string;
   errorMessage?: string;
+  alwaysFullWidth?: boolean;
 }
 
 export function FormFieldControl({
@@ -15,9 +16,16 @@ export function FormFieldControl({
   errorMessage,
   className,
   children,
+  alwaysFullWidth = false,
 }: Props) {
   return (
-    <div className={cx("flex flex-col gap-1 w-full md:w-fit", className)}>
+    <div
+      className={cx(
+        "flex flex-col gap-1 w-full",
+        { "md:w-fit": !alwaysFullWidth },
+        className
+      )}
+    >
       <Label.Root htmlFor={name} className="font-bold">
         {label}
       </Label.Root>
