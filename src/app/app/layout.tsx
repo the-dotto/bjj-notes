@@ -41,7 +41,7 @@ export default async function Layout({ children }: PropsWithChildren) {
           </nav>
         </header>
 
-        <main className="h-full w-full overflow-y-auto p-4 flex flex-col gap-8 relative">
+        <main className="h-full w-full overflow-y-auto p-4 flex flex-col gap-6 relative">
           {children}
         </main>
       </div>

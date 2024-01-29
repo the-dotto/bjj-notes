@@ -6,16 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-types": "supabase gen types typescript --project-id rlxxdligmaoaqzhuhebi > src/services/supabase/interfaces/database.ts "
   },
   "dependencies": {
     "@emotion/css": "^11.11.2",
     "@hookform/resolvers": "^3.3.4",
-    "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
-    "@radix-ui/react-select": "^2.0.0",
-    "@radix-ui/react-separator": "^1.0.3",
-    "@radix-ui/react-tabs": "^1.0.4",
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.3",
     "classnames": "^2.5.1",
@@ -23,8 +20,10 @@
     "is-hotkey": "^0.2.0",
     "next": "14.1.0",
     "react": "^18",
+    "react-datepicker": "^5.0.0",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "react-select": "^5.8.0",
     "slate": "^0.101.5",
     "slate-history": "^0.100.0",
     "slate-react": "^0.101.6",
@@ -34,11 +33,13 @@
     "@types/is-hotkey": "^0.1.10",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-datepicker": "^4.19.5",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "supabase": "^1.136.3",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

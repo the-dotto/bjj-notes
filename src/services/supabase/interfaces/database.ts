@@ -11,7 +11,7 @@ export interface Database {
     Tables: {
       entries: {
         Row: {
-          content: string
+          content: Json
           created_at: string
           date: string
           id: number
@@ -19,7 +19,7 @@ export interface Database {
           user_id: string
         }
         Insert: {
-          content: string
+          content: Json
           created_at?: string
           date: string
           id?: number
@@ -27,7 +27,7 @@ export interface Database {
           user_id: string
         }
         Update: {
-          content?: string
+          content?: Json
           created_at?: string
           date?: string
           id?: number
@@ -39,35 +39,6 @@ export interface Database {
             foreignKeyName: "entries_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      user_preferences: {
-        Row: {
-          created_at: string
-          id: number
-          tags: string[]
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          tags: string[]
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          tags?: string[]
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_preferences_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

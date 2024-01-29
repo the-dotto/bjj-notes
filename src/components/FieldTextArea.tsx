@@ -1,12 +1,13 @@
 import { PropsForFormFields } from "~/interfaces/form";
 import { useController, FieldValues } from "react-hook-form";
-import * as Label from "@radix-ui/react-label";
+import { FormFieldControl } from "./FormFieldControl";
 
 interface Props<Fields extends FieldValues> extends PropsForFormFields<Fields> {
   type: "text" | "email" | "password";
 }
 
 export function FieldTextArea<Fields extends FieldValues>({
+  label,
   type,
   placeholder,
   isRequired = false,
@@ -15,9 +16,11 @@ export function FieldTextArea<Fields extends FieldValues>({
   const { field, fieldState } = useController(props);
 
   return (
-    <div className="flex flex-col gap-2">
-      <Label.Root htmlFor={field.name}></Label.Root>
-
+    <FormFieldControl
+      label={label}
+      name={field.name}
+      errorMessage={fieldState?.error?.message}
+    >
       <textarea
         id={field.name}
         ref={field.ref}
@@ -29,10 +32,6 @@ export function FieldTextArea<Fields extends FieldValues>({
         required={isRequired}
         disabled={field.disabled}
       />
-
-      {fieldState?.error && (
-        <span className="text-red-700">{fieldState.error.message}</span>
-      )}
-    </div>
+    </FormFieldControl>
   );
 }

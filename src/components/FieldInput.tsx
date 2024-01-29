@@ -1,6 +1,6 @@
 import { PropsForFormFields } from "~/interfaces/form";
 import { useController, FieldValues } from "react-hook-form";
-import * as Label from "@radix-ui/react-label";
+import { FormFieldControl } from "./FormFieldControl";
 
 interface Props<Fields extends FieldValues> extends PropsForFormFields<Fields> {
   autoComplete?: false;
@@ -8,19 +8,21 @@ interface Props<Fields extends FieldValues> extends PropsForFormFields<Fields> {
 }
 
 export function FieldInput<Fields extends FieldValues>({
-	label,
+  label,
   type,
   placeholder,
   isRequired = false,
-	autoComplete = false,
+  autoComplete = false,
   ...props
 }: Props<Fields>) {
   const { field, fieldState } = useController(props);
 
   return (
-    <div className="flex flex-col gap-2">
-      <Label.Root htmlFor={field.name}>{label}</Label.Root>
-
+    <FormFieldControl
+      label={label}
+      name={field.name}
+      errorMessage={fieldState?.error?.message}
+    >
       <input
         id={field.name}
         ref={field.ref}
@@ -35,10 +37,6 @@ export function FieldInput<Fields extends FieldValues>({
         className="border-2 border-gray-900 active:border-gray-950 focus:border-gray-950 rounded py-2 px-4"
         autoComplete={autoComplete ? "on" : "off"}
       />
-
-      {fieldState?.error && (
-        <span className="text-red-700">{fieldState.error.message}</span>
-      )}
-    </div>
+    </FormFieldControl>
   );
 }

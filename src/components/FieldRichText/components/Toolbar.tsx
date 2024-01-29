@@ -52,3 +52,5 @@ export const Toolbar = forwardRef<HTMLDivElement, PropsWithClassName>(
     </Menu>
   )
 );
+
+Toolbar.displayName = "Toolbar";

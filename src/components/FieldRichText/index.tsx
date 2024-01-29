@@ -1,51 +1,45 @@
-"use client";
-
-import { useMemo } from "react";
-import isHotkey from "is-hotkey";
-import { Editable, withReact, Slate } from "slate-react";
+import React, { useMemo } from "react";
 import { createEditor } from "slate";
+import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
-import { HOTKEYS } from "./constants";
-import { Toolbar } from "./components/Toolbar";
-import { toggleMark } from "./utilities";
-import { useRenderElement, useRenderLeaf } from "./hooks";
 import {
-  FieldValues,
   UseControllerProps,
+  FieldValues,
   useController,
 } from "react-hook-form";
+import { INITIAL_VALUE } from "./constants";
+import { PropsWithClassName } from "~/interfaces/utilities";
+import { FormFieldControl } from "../FormFieldControl";
+import cx from 'classnames';
 
-export function FieldRichText<Fields extends FieldValues>(
-  props: UseControllerProps<Fields>
-) {
-  const renderElement = useRenderElement();
-  const renderLeaf = useRenderLeaf();
+interface Props<Fields extends FieldValues>
+  extends PropsWithClassName,
+    UseControllerProps<Fields> {
+  label: string;
+}
+
+export function FieldRichText<Fields extends FieldValues>({
+  label,
+  className,
+  ...props
+}: Props<Fields>) {
+  const { field, fieldState } = useController(props);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  const { field } = useController(props);
 
   return (
-    <Slate
-      editor={editor}
-      initialValue={[]}
-      onChange={(value) => field.onChange({ target: { value } })}
+    <FormFieldControl
+      label={label}
+      name={field.name}
+      errorMessage={fieldState?.error?.message}
+      className={cx(className, '!w-full')}
     >
-      <Toolbar />
-
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        spellCheck
-        autoFocus
-        onKeyDown={(event) => {
-          for (const hotkey in HOTKEYS) {
-            if (isHotkey(hotkey, event as any)) {
-              event.preventDefault();
-              const mark = HOTKEYS[hotkey];
-              toggleMark(editor, mark);
-            }
-          }
-        }}
-      />
-    </Slate>
+      <Slate
+        editor={editor}
+        initialValue={field.value ?? INITIAL_VALUE}
+        onChange={(value) => field.onChange({ target: { value } })}
+      >
+        <Editable className="h-full focus:outline-none border-2 border-gray-900 active:border-gray-950 focus:border-gray-950 rounded py-2 px-4" />
+      </Slate>
+    </FormFieldControl>
   );
 }

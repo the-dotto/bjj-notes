@@ -32,3 +32,5 @@ export const Button = forwardRef<HTMLSpanElement, Props>(
     />
   )
 );
+
+Button.displayName = "Button";
