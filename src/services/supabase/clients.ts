@@ -32,10 +32,10 @@ export class Clients {
             return cookieStore.get(name)?.value
           },
           set(name: string, value: string, options: CookieOptions) {
-            return cookieStore.set({ name, value, ...options })
+            cookieStore.set({ name, value, ...options })
           },
           remove(name: string, options: CookieOptions) {
-            return cookieStore.set({ name, value: '', ...options })
+            cookieStore.set({ name, value: '', ...options })
           },
         },
       }
