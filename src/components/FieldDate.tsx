@@ -22,7 +22,7 @@ export function FieldDate<Fields extends FieldValues>({
             placeholderText={placeholder}
             onChange={(date) => field.onChange(date)}
             selected={field.value}
-            className="border-2 border-gray-900 active:border-gray-950 focus:border-gray-950 rounded py-2 px-4"
+            className="border-2 border-gray-900 active:border-gray-950 focus:border-gray-950 rounded py-2 px-4 w-full"
             ref={field.ref}
             onBlur={field.onBlur}
           />

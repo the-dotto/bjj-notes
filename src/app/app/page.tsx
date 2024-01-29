@@ -1,18 +1,28 @@
-import Link from "next/link";
+import { WeekOverview } from "~/components/WeekOverview";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { SUPABASE_SERVICE } from "~/services/supabase";
+import { ButtonAddEntry } from "~/components/ButtonAddEntry";
 
 export default async function Page() {
+  const cookieStore = cookies();
+  const client = SUPABASE_SERVICE.clients.forServer(cookieStore);
+  const { data, error } =
+    await SUPABASE_SERVICE.modules.entries.listCurrentWeek(client);
+
+  if (error) {
+    redirect("/app/error");
+  }
+
   return (
     <>
       <div>
         <h1 className="text-4xl font-bold">Dashboard</h1>
       </div>
 
-      <Link
-        href="/app/entries/new"
-        className="rounded-md block absolute bottom-4 right-4 px-8 py-4 bg-gray-950 text-white font-bold text-xl translate-y-0 hover:-translate-y-1 focus:-translate-y-1 active:translate-y-0 transition-transform"
-      >
-        Add Entry
-      </Link>
+      <WeekOverview entries={data} />
+
+      <ButtonAddEntry />
     </>
   );
 }

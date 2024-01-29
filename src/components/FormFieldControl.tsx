@@ -17,7 +17,7 @@ export function FormFieldControl({
   children,
 }: Props) {
   return (
-    <div className={cx("flex flex-col gap-1 w-fit", className)}>
+    <div className={cx("flex flex-col gap-1 w-full md:w-fit", className)}>
       <Label.Root htmlFor={name} className="font-bold">
         {label}
       </Label.Root>

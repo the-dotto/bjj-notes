@@ -16,6 +16,7 @@ export interface Database {
           date: string
           id: number
           tags: string[]
+          title: string
           user_id: string
         }
         Insert: {
@@ -24,6 +25,7 @@ export interface Database {
           date: string
           id?: number
           tags: string[]
+          title?: string
           user_id: string
         }
         Update: {
@@ -32,6 +34,7 @@ export interface Database {
           date?: string
           id?: number
           tags?: string[]
+          title?: string
           user_id?: string
         }
         Relationships: [

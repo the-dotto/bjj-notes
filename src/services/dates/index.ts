@@ -1,17 +1,44 @@
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import PluginLocalizedFormat from 'dayjs/plugin/localizedFormat'
 
+type UnparsedDate = Dayjs | Date | string;
 class DateService {
 	private readonly formats = {
-		display: 'dddd, MMMM D, YYYY'
+		display: 'dddd, MMMM D, YYYY',
+		day: 'dddd',
 	}
 
 	constructor() {
 		dayjs.extend(PluginLocalizedFormat);
 	}
 
-	public getCurrentDateForDisplay() {
-		return dayjs().format(this.formats.display);
+	public format(format: keyof typeof this.formats, date = dayjs()) {
+		return date.format(this.formats[format]);
+	}
+
+	public getCurrentWeekStartAndEnd() {
+		const date = dayjs();
+		const start = date.startOf('week')
+		const end = date.endOf('week')
+
+		return { start, end };
+	};
+
+	public getCurrentWeekDates() {
+		const { start, end } = this.getCurrentWeekStartAndEnd();
+		const dates = []
+
+		let currentDate = start;
+
+		while (currentDate <= end) {
+			dates.push(currentDate);
+			currentDate = currentDate.add(1, 'day');
+		}
+		return dates;
+	};
+
+	public isSameDay(date1: UnparsedDate, date2: UnparsedDate) {
+		return dayjs(date1).isSame(date2, 'day');
 	}
 };
 

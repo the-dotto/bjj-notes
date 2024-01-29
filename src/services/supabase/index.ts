@@ -12,3 +12,5 @@ class SupabaseService {
 };
 
 export const SUPABASE_SERVICE = new SupabaseService();
+
+export { type Tables } from './interfaces/database';

@@ -5,7 +5,6 @@ import { SUPABASE_SERVICE } from "~/services/supabase";
 import styles from "./styles.module.css";
 import { DATE_SERVICE } from "~/services/dates";
 import { HeaderLink } from "~/components/HeaderLink";
-import Link from "next/link";
 
 export default async function Layout({ children }: PropsWithChildren) {
   const cookieStore = cookies();
@@ -17,20 +16,22 @@ export default async function Layout({ children }: PropsWithChildren) {
   }
 
   return (
-    <div className="grid place-items-center h-screen overflow-hidden py-8">
+    <div className="grid place-items-center h-screen overflow-hidden max-md:p-2 md:py-8">
       <div className={styles["layout-container"]}>
-        <header className="flex justify-between px-4 items-center border-b-2 border-b-gray-900 select-none">
-          <div className="flex gap-2 items-center py-2 ">
+        <header className="flex max-md:flex-col justify-between md:px-4 items-center border-b-2 border-b-gray-900 select-none">
+          <div className="flex max-md:flex-col gap-2 items-center py-2 ">
             <h2 className="text-2xl font-bold">BJJ Notes</h2>
 
-            <span className="block text-gray-700 font-light">/</span>
+            <span className="block text-gray-700 font-light max-md:hidden">
+              /
+            </span>
 
             <span className="block text-gray-700 font-light">
-              {DATE_SERVICE.getCurrentDateForDisplay()}
+              {DATE_SERVICE.format("display")}
             </span>
           </div>
 
-          <nav className="flex items-center h-full">
+          <nav className="md:flex md:items-center h-full max-md:self-stretch max-md:grid max-md:grid-cols-3 max-md:border-t-2 max-md:border-t-gray-900">
             <HeaderLink href="/app">Dashboard</HeaderLink>
 
             <HeaderLink href="/app/settings">Settings</HeaderLink>

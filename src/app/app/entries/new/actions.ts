@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { SUPABASE_SERVICE } from "~/services/supabase";
 import { Tables } from "~/services/supabase/interfaces/database";
 
-export interface Fields extends Pick<Tables<'entries'>, 'content'> {
+export interface Fields extends Pick<Tables<'entries'>, 'content' | 'title'> {
 	date: Date;
 	tags: { label: string; value: string }[];
 }
@@ -27,7 +27,7 @@ export async function onFormSubmit(fields: Fields) {
 		const entry = await SUPABASE_SERVICE.modules.entries.create(client, { ...fields, date, tags, 'user_id': auth.data?.user?.id });
 
 		if (entry.error) {
-			redirect("/error");
+			redirect("/app/entries/new/error");
 		};
 
 		revalidatePath("/app", 'layout');

@@ -1,0 +1,5 @@
+.week-container {
+  @apply w-full grid gap-4 overflow-x-auto grid-flow-col;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(200px, 1fr));
+}
