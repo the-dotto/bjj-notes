@@ -1,4 +1,5 @@
 import { ButtonLogout } from "./components/ButtonLogout";
+import { ButtonLink } from "~/components/ButtonLink";
 
 export default function Page() {
   return (
@@ -12,7 +13,11 @@ export default function Page() {
         </p>
       </div>
 
-      <ButtonLogout />
+      <div className="flex flex-col gap-2">
+        <ButtonLogout />
+
+        <ButtonLink href="/app">Go Back</ButtonLink>
+      </div>
     </>
   );
 }

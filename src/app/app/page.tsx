@@ -1,30 +1,18 @@
-import { PropsWithChildren } from "react";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { SUPABASE_SERVICE } from "~/services/supabase";
-import { Button } from "~/components/Button";
+import Link from "next/link";
 
 export default async function Page() {
-  const cookieStore = cookies();
-  const client = SUPABASE_SERVICE.clients.forServer(cookieStore);
-  const { data, error } = await SUPABASE_SERVICE.modules.userProfiles.get(client);
-
-	console.info(data)
-
-	if (error) {
-		redirect('/error')
-	};
-
-  // const user = await SUPABASE_SERVICE.modules.userProfiles.get(
-  //   client,
-  //   data.user?.id ?? ""
-  // );
-
   return (
     <>
-      <pre>{JSON.stringify(data)}</pre>
+      <div>
+        <h1 className="text-4xl font-bold">Dashboard</h1>
+      </div>
+
+      <Link
+        href="/app/entries/new"
+        className="rounded-md block absolute bottom-4 right-4 px-8 py-4 bg-gray-950 text-white font-bold text-xl translate-y-0 hover:-translate-y-1 focus:-translate-y-1 active:translate-y-0 transition-transform"
+      >
+        Add Entry
+      </Link>
     </>
   );
-
-  // return <>{user.data?.name}</>;
 }
