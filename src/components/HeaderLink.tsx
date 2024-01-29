@@ -16,7 +16,7 @@ export function HeaderLink({ href, children, isLastItem = false }: Props) {
   return (
     <div
       className={cx(
-        "h-full grid place-items-center transition-colors border-r-2 md:first:border-l-gray-900 first:border-l-2 border-r-gray-900 last:border-r-0 last:border-r-transparent group max-md:self-stretch",
+        "h-full grid place-items-center transition-colors border-r-2 md:first:border-l-gray-900 md:first:border-l-2 border-r-gray-900 last:border-r-0 last:border-r-transparent group max-md:self-stretch",
         {
           "bg-gray-900 text-white": path === href,
           "text-gray-700 bg-transparent": path !== href,
