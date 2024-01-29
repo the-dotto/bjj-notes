@@ -17,7 +17,7 @@ export default async function Page() {
   return (
     <>
       <div>
-        <h1 className="text-4xl font-bold">Dashboard</h1>
+        <h1 className="text-4xl font-bold">Root</h1>
       </div>
 
       <WeekOverview entries={data} />

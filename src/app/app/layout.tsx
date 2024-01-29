@@ -31,11 +31,10 @@ export default async function Layout({ children }: PropsWithChildren) {
             </span>
           </div>
 
-          <nav className="md:flex md:items-center h-full max-md:self-stretch max-md:grid max-md:grid-cols-3 max-md:border-t-2 max-md:border-t-gray-900">
-            <HeaderLink href="/app">Dashboard</HeaderLink>
-
+          <nav className="md:flex md:items-center h-full max-md:self-stretch max-md:grid max-md:grid-cols-4 max-md:border-t-2 max-md:border-t-gray-900">
+            <HeaderLink href="/app">Root</HeaderLink>
+            <HeaderLink href="/app/entries">Entries</HeaderLink>
             <HeaderLink href="/app/settings">Settings</HeaderLink>
-
             <HeaderLink href="/auth/logout" isLastItem>
               Log Out
             </HeaderLink>

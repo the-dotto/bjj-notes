@@ -5,6 +5,7 @@ type UnparsedDate = Dayjs | Date | string;
 class DateService {
 	private readonly formats = {
 		display: 'dddd, MMMM D, YYYY',
+		timestamp: 'h:mm:ss - dd, MMM D, YYYY',
 		day: 'dddd',
 	}
 
@@ -12,8 +13,12 @@ class DateService {
 		dayjs.extend(PluginLocalizedFormat);
 	}
 
-	public format(format: keyof typeof this.formats, date = dayjs()) {
-		return date.format(this.formats[format]);
+	public format(format: keyof typeof this.formats, date?: UnparsedDate) {
+		return dayjs(undefined).format(this.formats[format]);
+	}
+
+	public toDate(date: UnparsedDate) {
+		return dayjs(date).toDate();
 	}
 
 	public getCurrentWeekStartAndEnd() {

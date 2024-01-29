@@ -33,7 +33,7 @@ export function WeekOverview({ entries }: Props) {
             key={index}
             className="border-2 border-gray-900 rounded flex flex-col snap-center"
           >
-            <span className="bg-gray-900 p-4 text-white text-center">
+            <span className="bg-gray-900 p-4 text-white text-center select-none">
               {DATE_SERVICE.format("day", date)}
             </span>
 
@@ -41,7 +41,7 @@ export function WeekOverview({ entries }: Props) {
               {!!entries.length && (
                 <ul className="list-decimal list-inside">
                   {entries.map((entry) => (
-                    <li key={entry.id} className="truncate">
+                    <li key={entry.id} className="truncate select-none">
                       {entry.title}
                     </li>
                   ))}
