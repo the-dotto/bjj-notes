@@ -31,17 +31,13 @@ export function WeekOverview({ entries }: Props) {
         {entriesWithDates.map(({ entries, date }, index) => (
           <li
             key={index}
-            className="border-2 border-gray-900 rounded flex flex-col"
+            className="border-2 border-gray-900 rounded flex flex-col snap-center"
           >
             <span className="bg-gray-900 p-4 text-white text-center">
               {DATE_SERVICE.format("day", date)}
             </span>
 
             <div className="p-4 flex flex-col">
-              {!entries.length && (
-                <span className="font-light italic">No Entries</span>
-              )}
-
               {!!entries.length && (
                 <ul className="list-decimal list-inside">
                   {entries.map((entry) => (

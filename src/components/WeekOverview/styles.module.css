@@ -1,5 +1,5 @@
 .week-container {
-  @apply w-full grid gap-4 overflow-x-auto grid-flow-col;
+  @apply w-full grid gap-2 md:gap-4 overflow-x-auto grid-flow-col scroll-smooth snap-proximity snap-x;
   display: grid;
   grid-template-columns: repeat(7, minmax(200px, 1fr));
 }
