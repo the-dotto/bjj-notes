@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import { PropsWithChildren, forwardRef, MouseEventHandler } from "react";
 import { PropsWithClassName } from "~/interfaces/utilities";
 import cx from "classnames";
-import { css } from "@emotion/css";
 
 interface Props extends PropsWithChildren, PropsWithClassName {
   active: boolean;
@@ -16,19 +15,9 @@ export const Button = forwardRef<HTMLSpanElement, Props>(
     <span
       {...props}
       ref={ref}
-      className={cx(
-        className,
-        css`
-          cursor: pointer;
-          color: ${reversed
-            ? active
-              ? "white"
-              : "#aaa"
-            : active
-            ? "black"
-            : "#ccc"};
-        `
-      )}
+      className={cx("p-2 cursor-pointer transition-colors border-2 border-gray-900 rounded-md", {
+        "text-white bg-gray-900": active,
+      })}
     />
   )
 );

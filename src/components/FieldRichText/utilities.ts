@@ -1,12 +1,10 @@
 import {
 	Editor,
-	Element as SlateElement,
+	Element,
 	Transforms,
-
 } from "slate";
 import { CustomEditor, CustomElement } from "~/interfaces/slate";
-import { LIST_TYPES } from "./constants";
-import { } from "./constants";
+// import { LIST_TYPES } from "./constants";
 
 export const isBlockActive = (editor: CustomEditor, format: string, blockType = "type") => {
 	const { selection } = editor;
@@ -17,7 +15,7 @@ export const isBlockActive = (editor: CustomEditor, format: string, blockType = 
 			at: Editor.unhangRange(editor, selection),
 			match: (n) =>
 				!Editor.isEditor(n) &&
-				SlateElement.isElement(n) &&
+				Element.isElement(n) &&
 				(n as any)[blockType] === format,
 		})
 	);
@@ -25,7 +23,7 @@ export const isBlockActive = (editor: CustomEditor, format: string, blockType = 
 	return !!match;
 };
 
-export const isMarkActive = (editor: CustomEditor, format: 'bold' | 'italic' | 'underline') => {
+export const isMarkActive = (editor: CustomEditor, format: 'bold' | 'italic') => {
 	const marks = Editor.marks(editor);
 	return marks ? marks[format] === true : false;
 };
@@ -35,30 +33,32 @@ export const toggleBlock = (editor: CustomEditor, format: CustomElement['type'])
 		editor,
 		format,
 	);
-	const isList = LIST_TYPES.includes(format);
+	// const isList = LIST_TYPES.includes(format);
 
 	Transforms.unwrapNodes(editor, {
 		match: (n) =>
 			!Editor.isEditor(n) &&
-			SlateElement.isElement(n) &&
-			LIST_TYPES.includes((n as any).type),
+			Element.isElement(n),
+		// && LIST_TYPES.includes((n as any).type),
 		split: true,
 	});
 	let newProperties: Partial<CustomElement>;
 
 	newProperties = {
-		type: isActive ? "paragraph" : isList ? "list-item" : format,
+		// type: isActive ? "paragraph" : isList ? "list-item" : format,
+		type: isActive ? "paragraph" : format,
 	};
 
-	Transforms.setNodes<SlateElement>(editor, newProperties);
+	Transforms.setNodes<Element>(editor, newProperties);
 
-	if (!isActive && isList) {
+	// if (!isActive && isList) {
+	if (!isActive) {
 		const block = { type: format, children: [] };
 		Transforms.wrapNodes(editor, block);
 	}
 };
 
-export const toggleMark = (editor: CustomEditor, format: 'bold' | 'italic' | 'underline') => {
+export const toggleMark = (editor: CustomEditor, format: 'bold' | 'italic') => {
 	const isActive = isMarkActive(editor, format);
 
 	if (isActive) {

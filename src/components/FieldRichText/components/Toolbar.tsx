@@ -1,25 +1,17 @@
 import { forwardRef } from "react";
 import cx from "classnames";
-import { css } from "@emotion/css";
-import { Menu } from "./Menu";
 import { PropsWithClassName } from "~/interfaces/utilities";
 import { MarkButton } from "./MarkButton";
-import { BlockButton } from "./BlockButton";
+// import { BlockButton } from "./BlockButton";
 import { Icon } from "./Icon";
 
 export const Toolbar = forwardRef<HTMLDivElement, PropsWithClassName>(
   ({ className }, ref) => (
-    <Menu
+    <div
       ref={ref}
       className={cx(
-        className,
-        css`
-          position: relative;
-          padding: 1px 18px 17px;
-          margin: 0 -20px;
-          border-bottom: 2px solid #eee;
-          margin-bottom: 20px;
-        `
+        "relative py-2 px-4 border-b-2 border-b-gray-900 flex gap-1",
+        className
       )}
     >
       <MarkButton format="bold">
@@ -30,26 +22,26 @@ export const Toolbar = forwardRef<HTMLDivElement, PropsWithClassName>(
         <Icon type="italic" />
       </MarkButton>
 
-      <MarkButton format="underline">
+      {/* <MarkButton format="underline">
         <Icon type="underline" />
-      </MarkButton>
+      </MarkButton> */}
 
-      <BlockButton format="heading-one">
+      {/* <BlockButton format="heading-one">
         <Icon type="heading-one" />
-      </BlockButton>
+      </BlockButton> */}
 
-      <BlockButton format="heading-two">
-        <Icon type="heading-two" />
-      </BlockButton>
+      {/* <BlockButton format="heading">
+        <Icon type="heading" />
+      </BlockButton> */}
 
-      <BlockButton format="numbered-list">
+      {/* <BlockButton format="numbered-list">
         <Icon type="numbered-list" />
       </BlockButton>
 
       <BlockButton format="bulleted-list">
         <Icon type="bulleted-list" />
-      </BlockButton>
-    </Menu>
+      </BlockButton> */}
+    </div>
   )
 );
 

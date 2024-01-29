@@ -4,13 +4,8 @@ import { HistoryEditor } from 'slate-history'
 
 export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor
 
-export type ParagraphElement = {
-	type: 'paragraph'
-	children: CustomText[]
-}
-
-export type HeadingElement = {
-	type: 'heading-one' | 'heading-two'
+export type TextElement = {
+	type: 'paragraph' | 'heading';
 	children: CustomText[]
 }
 
@@ -19,9 +14,9 @@ export type ListElement = {
 	children: ListItemElement[]
 }
 
-export type CustomElement = ParagraphElement | HeadingElement | ListElement
+export type CustomElement = TextElement;
 
-export type FormattedText = { text: string; bold?: true, italic?: true, underline?: true }
+export type FormattedText = { text: string; bold?: true, italic?: true }
 
 export type CustomText = FormattedText
 

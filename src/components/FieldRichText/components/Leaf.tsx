@@ -15,9 +15,5 @@ export const Leaf = ({ attributes, children, leaf }: Props) => {
     children = <em>{children}</em>;
   }
 
-  if (leaf.underline) {
-    children = <u>{children}</u>;
-  }
-
   return <span {...attributes}>{children}</span>;
 };

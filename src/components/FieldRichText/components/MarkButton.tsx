@@ -6,7 +6,7 @@ import { useSlate } from "slate-react";
 import { isMarkActive, toggleMark } from "../utilities";
 
 interface Props extends PropsWithChildren {
-  format: "bold" | "italic" | "underline";
+  format: "bold" | "italic";
 }
 
 export function MarkButton({ format, children }: Props) {

@@ -3,8 +3,7 @@ interface Props {
     | "bold"
     | "italic"
     | "underline"
-    | "heading-one"
-    | "heading-two"
+    | 'heading'
     | "numbered-list"
     | "bulleted-list";
 }
@@ -60,8 +59,7 @@ export function Icon({ type }: Props) {
           ></path>
         </svg>
       );
-    case "heading-one":
-    case "heading-two":
+    case "heading":
       return (
         <svg
           width="15"

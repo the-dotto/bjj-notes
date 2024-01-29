@@ -1,12 +1,11 @@
 import { Descendant } from "slate";
 
-export const HOTKEYS: Record<string, 'bold' | 'italic' | 'underline'> = {
+export const HOTKEYS: Record<string, 'bold' | 'italic'> = {
 	"mod+b": "bold",
 	"mod+i": "italic",
-	"mod+u": "underline",
 };
 
-export const LIST_TYPES = ["numbered-list", "bulleted-list"];
+// export const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 export const INITIAL_VALUE: Descendant[] = [
 	{ type: "paragraph", children: [{ text: "" }] },
