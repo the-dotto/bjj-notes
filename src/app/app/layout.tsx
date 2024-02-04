@@ -16,7 +16,7 @@ export default async function Layout({ children }: PropsWithChildren) {
   }
 
   return (
-    <div className="grid place-items-center h-screen overflow-hidden max-md:p-2 md:py-8">
+    <div className="grid place-items-center h-dvh overflow-hidden max-md:p-2 md:py-8">
       <div className={styles["layout-container"]}>
         <header className="flex max-md:flex-col justify-between md:px-4 items-center border-b-2 border-b-gray-900 select-none">
           <div className="flex max-md:flex-col gap-2 items-center py-2 ">

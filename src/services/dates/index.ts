@@ -14,7 +14,7 @@ class DateService {
 	}
 
 	public format(format: keyof typeof this.formats, date?: UnparsedDate) {
-		return dayjs(undefined).format(this.formats[format]);
+		return dayjs(date).format(this.formats[format]);
 	}
 
 	public toDate(date: UnparsedDate) {
@@ -37,10 +37,14 @@ class DateService {
 
 		while (currentDate <= end) {
 			dates.push(currentDate);
-			currentDate = currentDate.add(1, 'day');
+			currentDate = currentDate.add(1, 'days');
 		}
 		return dates;
 	};
+
+	public isToday(date?: UnparsedDate) {
+		return dayjs(date).isSame(dayjs(), 'day');
+	}
 
 	public isSameDay(date1: UnparsedDate, date2: UnparsedDate) {
 		return dayjs(date1).isSame(date2, 'day');

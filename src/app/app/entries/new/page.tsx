@@ -67,7 +67,7 @@ export default function Page() {
           label="Content"
           name="content"
           control={form.control}
-          className="grow"
+          className="grow max-md:min-h-12"
         />
       </div>
     </form>

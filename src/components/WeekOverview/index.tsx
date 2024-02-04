@@ -4,6 +4,7 @@ import { DATE_SERVICE } from "~/services/dates";
 import { useMemo } from "react";
 import { Tables } from "~/services/supabase";
 import styles from "./styles.module.css";
+import cx from "classnames";
 
 interface Props {
   entries: Tables<"entries">[];
@@ -21,6 +22,7 @@ export function WeekOverview({ entries }: Props) {
       return {
         date,
         entries: filteredEntries,
+        isToday: DATE_SERVICE.isToday(date),
       };
     });
   }, [entries]);
@@ -28,12 +30,17 @@ export function WeekOverview({ entries }: Props) {
   return (
     <div className="w-full overflow-x-hidden">
       <ul className={styles["week-container"]}>
-        {entriesWithDates.map(({ entries, date }, index) => (
+        {entriesWithDates.map(({ entries, date, isToday }, index) => (
           <li
             key={index}
             className="border-2 border-gray-900 rounded flex flex-col snap-center"
           >
-            <span className="bg-gray-900 p-4 text-white text-center select-none">
+            <span
+              className={cx("p-4 text-center select-none", {
+                "bg-gray-900 text-white": isToday,
+                "border-b-2 border-b-gray-900": !isToday,
+              })}
+            >
               {DATE_SERVICE.format("day", date)}
             </span>
 
